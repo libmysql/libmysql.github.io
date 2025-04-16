@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Balloon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- не воруйте тупые пастеры а то по шее дам)-->
+<div class="game-container">
+    <header class="game-header">
+        <div class="header-top">
+            <h1 class="game-title">LUCKY BALLOON</h1>
+        </div>
+        <div class="header-bottom">
+            <div class="balance-container">
+                <div class="balance-label">Баланс:</div>
+                <div class="balance-amount" id="balance">3,000</div>
+                <div class="balance-currency">₽</div>
+            </div>
+
+            <div class="leaderboard-popup" id="leaderboard-popup">
+                <div class="leaderboard-content">
+                    <h2 class="leaderboard-title">ТАБЛИЦА ЛИДЕРОВ</h2>
+                    <button class="close-leaderboard" id="close-leaderboard">×</button>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Игрок</th>
+                                <th>Баланс</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                           
+                        </tbody>
+                    </table>
+                    <div class="leaderboard-controls">
+                        <input type="text" id="player-name" placeholder="Ваш ник" maxlength="12">
+                        <button class="btn" id="save-score">Сохранить результат</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+        
+
+        <main class="game-main">
+            <div class="game-area">
+                <div class="balloon-container" id="balloon-container">
+                    <div class="balloon" id="balloon">
+                        <div class="balloon-string"></div>
+                        <div class="balloon-face">
+                            <div class="eye left"></div>
+                            <div class="eye right"></div>
+                            <div class="mouth"></div>
+                        </div>
+                    </div>
+                    <div class="balloon-shadow"></div>
+                </div>
+                <div class="multiplier-display" id="multiplier">x1.00</div>
+                <div class="flight-path"></div>
+                <div class="explosion" id="explosion"></div>
+            </div>
+
+<div class="controls">
+    <div class="bet-controls">
+        <div class="bet-amount-container">
+            <button class="bet-btn minus" id="decrease-bet">-</button>
+            <input type="number" class="bet-amount" id="bet-amount">
+            <button class="bet-btn plus" id="increase-bet">+</button>
+        </div>
+        <div class="bet-buttons">
+            <button class="chip-btn" data-amount="50">50</button>
+            <button class="chip-btn" data-amount="100">100</button>
+            <button class="chip-btn" data-amount="500">500</button>
+            <button class="chip-btn" data-amount="1000">1K</button>
+            <button class="chip-btn" data-amount="2000">2K</button>
+        </div>
+    
+</div>
+
+                <div class="game-buttons">
+                    <button class="btn start-btn" id="start-btn">ЗАПУСТИТЬ ШАРИК</button>
+                    <button class="btn cashout-btn disabled" id="cashout-btn" disabled>ЗАБРАТЬ</button>
+                </div>
+            </div>
+        </main>
+
+        <div class="history" id="history">
+            <div class="history-title">Последние игры:</div>
+            <div class="history-items"></div>
+            <div class="leaderboard-btn-container">
+                <button class="leaderboard-btn" id="show-leaderboard">ЛИДЕРЫ</button>
+            </div>
+        </div>
+
+        <div class="win-popup" id="win-popup">
+            <div class="win-content">
+                <div class="win-title">ПОБЕДА!</div>
+                <div class="win-amount" id="win-amount">+1,500 ₽</div>
+                <button class="btn win-btn" id="close-win">OK</button>
+            </div>
+        </div>
+    </div>
+
+    
+<!-- by libmysql, code is art-->
+    <audio id="inflate-sound" src="bi.mp3"></audio>
+    <audio id="pop-sound" src="pop.mp3"></audio>
+    <audio id="win-sound" src="win.mp3"></audio>
+    <audio id="lose-sound" src="lose.mp3"></audio>
+    <audio id="button-sound" src="click.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- by libmysql, code is art-->
