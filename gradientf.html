@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gradientf</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d1b2a;
+            --secondary-color: #1b263b;
+            --accent-color: #4ea8de;
+            --accent-dark: #1e6091;
+            --text-color: #e2e2e2;
+            --text-secondary: #a0a0a0;
+            --rounded: 12px;
+            --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #009fff, #5fa8d3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background-color: var(--secondary-color);
+            border-radius: var(--rounded);
+            padding: 2rem;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        textarea, input[type="text"], input[type="color"], select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(78, 168, 222, 0.2);
+            border-radius: var(--rounded);
+            background-color: rgba(13, 27, 42, 0.5);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        textarea:focus, input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(78, 168, 222, 0.2);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+	.ppp {
+	  background: linear-gradient(
+        to right,
+        #00c0fa 20%,
+        #00affa 30%,
+        #008efa 70%,
+        #007dfa 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+	}
+
+@keyframes textShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+        .output-preview {
+            min-height: 100px;
+            padding: 1rem;
+            border-radius: var(--rounded);
+            background-color: rgba(13, 27, 42, 0.5);
+            border: 1px dashed rgba(78, 168, 222, 0.3);
+            margin-bottom: 1.5rem;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .output-raw {
+            min-height: 60px;
+            padding: 1rem;
+            border-radius: var(--rounded);
+            background-color: rgba(13, 27, 42, 0.8);
+            border: 1px dashed rgba(78, 168, 222, 0.5);
+            margin-bottom: 1.5rem;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--rounded);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn:hover {
+            background-color: rgba(78, 168, 222, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .color-picker-label {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            border: 2px solid rgba(78, 168, 222, 0.5);
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 6px;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .copied-message {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--rounded);
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gradient-preview {
+            width: 100%;
+            height: 20px;
+            border-radius: var(--rounded);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #4ea8de, #1e6091);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+	    margin-top: -2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+      
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            border-radius: var(--rounded);
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            border: 1px solid rgba(78, 168, 222, 0.2);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+   
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="ppp">gradientf</h1>
+            <p class="subtitle">Create colorful chat messages and gradients for Team Fortress 2</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <div class="input-group">
+                    <label for="message">Your Text</label>
+                    <textarea id="message" placeholder="Enter your text here"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Gradient Colors</label>
+                    <div class="color-picker-container">
+                        <div>
+                            <span class="color-picker-label">Start Color:</span>
+                            <input type="color" id="startColor" value="#4ea8de">
+                        </div>
+                        <div>
+                            <span class="color-picker-label">End Color:</span>
+                            <input type="color" id="endColor" value="#1e6091">
+                        </div>
+                    </div>
+                    <div class="gradient-preview" id="gradient"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Preview</label>
+                    <div id="output" class="output-preview">Your colored text will appear here</div>
+                    <div id="outputRaw" class="output-raw">Raw output will appear here</div>
+                    <div id="error" class="error-message"></div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="generateButton">Generate Gradient</button>
+                    <button class="btn" onclick="copyToClipboard(this)">Copy to Clipboard</button>
+                    <div class="tooltip">
+                        <button class="btn">Help</button>
+                        <span class="tooltiptext">
+                            For single colors: Click color buttons below<br>
+                            For gradients: Set start and end colors above<br><br>
+                            Format: XXXHEXYourText
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 style="margin-bottom: 1rem; color: var(--accent-color);">Quick Color Codes</h2>
+                <div class="btn-group">
+                    <button class="btn" style="color: #FF0000;" onclick="insertColor('FF0000')">Red</button>
+                    <button class="btn" style="color: #00FF00;" onclick="insertColor('00FF00')">Green</button>
+                    <button class="btn" style="color: #0000FF;" onclick="insertColor('0000FF')">Blue</button>
+                    <button class="btn" style="color: #FFFF00;" onclick="insertColor('FFFF00')">Yellow</button>
+                    <button class="btn" style="color: #FFA500;" onclick="insertColor('FFA500')">Orange</button>
+                    <button class="btn" style="color: #800080;" onclick="insertColor('800080')">Purple</button>
+                    <button class="btn" style="color: #FFC0CB;" onclick="insertColor('FFC0CB')">Pink</button>
+                    <button class="btn" style="color: #00FFFF;" onclick="insertColor('00FFFF')">Cyan</button>
+                    <button class="btn" onclick="insertColor('FFFFFF')">Reset</button>
+                </div>
+
+                <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent-color);">Item Quality Colors</h2>
+                <div class="btn-group">
+                    <button class="btn" style="color: #B2B2B2;" onclick="insertColor('B2B2B2')">Normal</button>
+                    <button class="btn" style="color: #FFD700;" onclick="insertColor('FFD700')">Unique</button>
+                    <button class="btn" style="color: #476291;" onclick="insertColor('476291')">Vintage</button>
+                    <button class="btn" style="color: #4D7455;" onclick="insertColor('4D7455')">Genuine</button>
+                    <button class="btn" style="color: #CF6A32;" onclick="insertColor('CF6A32')">Strange</button>
+                    <button class="btn" style="color: #8650AC;" onclick="insertColor('8650AC')">Unusual</button>
+                    <button class="btn" style="color: #38F3AB;" onclick="insertColor('38F3AB')">Haunted</button>
+                    <button class="btn" style="color: #AA0000;" onclick="insertColor('AA0000')">Collector's</button>
+                </div>
+            </div>
+        </main>
+    </div>
+	<!-- bro i made this site in notepad lmao -->
+    <div id="copiedMessage" class="copied-message">
+        Copied to clipboard!
+    </div>
+
+    <footer>
+        <p>gradientf &copy; 2025 | by <a class="ppp" href="https://libmysql.github.io/">libmysql</a></p>
+        <p>Not affiliated with Valve Corporation</p>
+    </footer>
+
+    <script>
+
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.slice(1), 16);
+            return {
+                r: (bigint >> 16) & 255,
+                g: (bigint >> 8) & 255,
+                b: bigint & 255
+            };
+        }
+
+        function rgbToHex(r, g, b) {
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+        }
+
+        function interpolateColor(start, end, factor) {
+            return {
+                r: Math.round(start.r + factor * (end.r - start.r)),
+                g: Math.round(start.g + factor * (end.g - start.g)),
+                b: Math.round(start.b + factor * (end.b - start.b))
+            };
+        }
+
+       
+        document.getElementById('generateButton').addEventListener('click', () => {
+            const gradientBar = document.getElementById('gradient');
+            const startColor = document.getElementById('startColor').value.trim();
+            const endColor = document.getElementById('endColor').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const output = document.getElementById('output');
+            const outputRaw = document.getElementById('outputRaw');
+            const error = document.getElementById('error');
+
+            output.textContent = '';
+            outputRaw.textContent = '';
+            error.textContent = '';
+
+            if (!/^#[0-9A-Fa-f]{6}$/.test(startColor) || !/^#[0-9A-Fa-f]{6}$/.test(endColor)) {
+                error.textContent = 'Please enter valid hex colors (e.g., #FF0000).';
+                return;
+            }
+
+            if (message.length === 0) {
+                error.textContent = 'Message cannot be empty.';
+                return;
+            }
+
+            if (message.length > 127) {
+                error.textContent = 'Message is too long. The maximum TF2 chat message length is 127 characters.';
+                return;
+            }
+
+            const startRgb = hexToRgb(startColor);
+            const endRgb = hexToRgb(endColor);
+
+            
+            const maxSteps = Math.floor(127 / (message.length + 8)); // 8 characters for formatting + color codes
+            let steps = Math.min(message.length, maxSteps);
+            if (steps < message.length) {
+                error.textContent = 'Gradient quality has been lowered to fit within the TF2 chat message length limit.';
+            }
+
+            let formattedOutput = '';
+            let rawOutput = '';
+            let lastHexColor = null;
+            
+            for (let i = 0; i < message.length; i++) {
+                const factor = Math.floor(i / (message.length / steps)) / (steps - 1);
+                const interpolatedColor = interpolateColor(startRgb, endRgb, factor);
+                const hexColor = rgbToHex(interpolatedColor.r, interpolatedColor.g, interpolatedColor.b).slice(1); // Remove the '#' from the hex code
+                
+                if (hexColor !== lastHexColor) {
+                    const colorCode = `XXXXXXX${hexColor}`;
+                    formattedOutput += `<span style="color: #${hexColor}">${message[i]}</span>`;
+                    rawOutput += `${colorCode}${message[i]}`;
+                    lastHexColor = hexColor;
+                } else {
+                    formattedOutput += message[i];
+                    rawOutput += message[i];
+                }
+            }
+
+            output.innerHTML = formattedOutput;
+            outputRaw.textContent = rawOutput;
+            gradientBar.style.background = `linear-gradient(to right, ${startColor}, ${endColor})`;
+        });
+
+
+        function insertColor(hexColor) {
+            const messageInput = document.getElementById('message');
+            const colorCode = `XXXXXXX${hexColor}`;
+            
+            const cursorPos = messageInput.selectionStart;
+            const textBefore = messageInput.value.substring(0, cursorPos);
+            const textAfter = messageInput.value.substring(cursorPos);
+            
+            messageInput.value = textBefore + colorCode + textAfter;
+            messageInput.selectionStart = messageInput.selectionEnd = cursorPos + colorCode.length;
+            messageInput.focus();
+        }
+
+  
+        function copyToClipboard(button) {
+            const text = document.getElementById('outputRaw').textContent;
+            if (!text || text === 'Raw output will appear here') {
+                const copiedMessage = document.getElementById('copiedMessage');
+                copiedMessage.textContent = 'Generate text first!';
+                copiedMessage.style.display = 'block';
+                copiedMessage.style.opacity = 1;
+                setTimeout(() => {
+                    copiedMessage.style.opacity = 0;
+                }, 2000);
+                return;
+            }
+
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    const copiedMessage = document.getElementById('copiedMessage');
+                    copiedMessage.textContent = 'Copied to clipboard!';
+                    copiedMessage.style.display = 'block';
+                    copiedMessage.style.opacity = 1;
+                    setTimeout(() => {
+                        copiedMessage.style.opacity = 0;
+                    }, 3000);
+                    
+                    if (button) {
+                        button.classList.add('animate');
+                        button.addEventListener('animationend', () => {
+                            button.classList.remove('animate');
+                        }, {once: true});
+                    }
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('gradient').style.background = 
+                `linear-gradient(to right, ${document.getElementById('startColor').value}, ${document.getElementById('endColor').value})`;
+        });
+    </script>
+</body>
+</html>
