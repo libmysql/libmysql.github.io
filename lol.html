@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petya</title>
+    <style>
+
+                        @font-face {
+            font-family: 'BIOS'; 
+            src: url('Web437_IBM_VGA_9x16.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap; 
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: 'BIOS';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            cursor: pointer;
+            overflow: hidden;
+            user-select: none;
+        }
+        
+        .skull {
+            font-size: 20px;
+            line-height: 20px;
+            animation: blink 3s infinite;
+            white-space: pre;
+            letter-spacing: 0;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="skull" id="skull">
+
+             uu$$$$$$$$$$$uu
+          uu$$$$$$$$$$$$$$$$$uu
+         u$$$$$$$$$$$$$$$$$$$$$u
+        u$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$*   *$$$*   *$$$$$$u
+       *$$$$*      u$u       $$$$*
+        $$$u       u$u       u$$$
+        $$$u      u$$$u      u$$$
+         *$$$$uu$$$   $$$uu$$$$*
+          *$$$$$$$*   *$$$$$$$*
+            u$$$$$$$u$$$$$$$u
+             u$*$*$*$*$*$*$u
+  uuu        $$u$ $ $ $ $u$$       uuu
+  u$$$$       $$$$$u$u$u$$$       u$$$$
+  $$$$$uu      *$$$$$$$$$*     uu$$$$$$
+u$$$$$$$$$$$uu    *****    uuuu$$$$$$$$$
+$$$$***$$$$$$$$$$uuu   uu$$$$$$$$$***$$$*
+ ***      **$$$$$$$$$$$uu **$***
+          uuuu **$$$$$$$$$$uuu
+ u$$$uuu$$$$$$$$$uu **$$$$$$$$$$$uuu$$$
+ $$$$$$$$$$****           **$$$$$$$$$$$*
+   *$$$$$*                      **$$$$**
+     $$$*                         $$$$*
+
+    </div>
+
+    <audio id="petyaSound" loop>
+        <source src="fuckyou.mp3" type="audio/mp3">
+        jbman let me suck your dick.
+    </audio>
+
+    <script>
+        const audio = document.getElementById('petyaSound');
+        audio.volume = 1.0;
+
+        document.addEventListener('click', function() {
+
+            audio.play().catch(e => console.log("jbmod:", e));
+            
+
+            const width = 400;
+            const height = 300;
+            const left = Math.random() * (screen.width - width);
+            const top = Math.random() * (screen.height - height);
+            
+            window.open('popup.html', '_blank', 
+                `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no`
+            );
+        });
+    </script>
+</body>
+</html>

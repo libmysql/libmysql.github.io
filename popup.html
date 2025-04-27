@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PETYA</title>
+    <style>
+        @font-face {
+            font-family: 'BIOS'; 
+            src: url('Web437_IBM_VGA_9x16.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap; 
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #aa0000;
+            color: white;
+            font-family: 'BIOS';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            cursor: pointer;
+            overflow: hidden;
+            animation: blink 0.1s infinite;
+            user-select: none;
+            text-align: center;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .skull {
+            font-size: 10px;
+            line-height: 10px;
+            white-space: pre;
+            letter-spacing: 0;
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="skull" id="skull">
+             uu$$$$$$$$$$$uu
+          uu$$$$$$$$$$$$$$$$$uu
+         u$$$$$$$$$$$$$$$$$$$$$u
+        u$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$*   *$$$*   *$$$$$$u
+       *$$$$*      u$u       $$$$*
+        $$$u       u$u       u$$$
+        $$$u      u$$$u      u$$$
+         *$$$$uu$$$   $$$uu$$$$*
+          *$$$$$$$*   *$$$$$$$*
+            u$$$$$$$u$$$$$$$u
+             u$*$*$*$*$*$*$u
+  uuu        $$u$ $ $ $ $u$$       uuu
+  u$$$$       $$$$$u$u$u$$$       u$$$$
+  $$$$$uu      *$$$$$$$$$*     uu$$$$$$
+u$$$$$$$$$$$uu    *****    uuuu$$$$$$$$$
+$$$$***$$$$$$$$$$uuu   uu$$$$$$$$$***$$$*
+ ***      **$$$$$$$$$$$uu **$***
+          uuuu **$$$$$$$$$$uuu
+ u$$$uuu$$$$$$$$$uu **$$$$$$$$$$$uuu$$$
+ $$$$$$$$$$****           **$$$$$$$$$$$*
+   *$$$$$*                      **$$$$**
+     $$$*                         $$$$*
+
+            PRESS ANY KEY!
+    </div>
+
+    <audio id="petyaSound" loop>
+        <source src="fuckyou.mp3" type="audio/mp3">
+        jbman oh my god jbman oh my god i need your signature please oh god damn
+    </audio>
+
+    <script>
+        let firstClick = true;
+        const audio = document.getElementById('petyaSound');
+        audio.volume = 1.0; 
+
+        document.addEventListener('click', function() {
+            if (firstClick) {
+                audio.play().catch(e => console.log("pingus:", e));
+                firstClick = false;
+            }
+            
+            const width = 400;
+            const height = 300;
+            const left = Math.random() * (screen.width - width);
+            const top = Math.random() * (screen.height - height);
+            
+            window.open('popup.html', '_blank', 
+                `width=${width},height=${height},left=${left},top=${top},menubar=no,toolbar=no`
+            );
+        });
+
+        let xOff = 30 + Math.random() * 40;  // 30-70
+        let yOff = 30 + Math.random() * 40;  // 30-70
+        let xPos = Math.random() * (screen.width - 400);
+        let yPos = Math.random() * (screen.height - 300);
+
+        function moveWindow() {
+            xPos += xOff;
+            yPos += yOff;
+            
+            if (xPos > screen.width - 400) xOff = -30 - Math.random() * 40;
+            if (xPos < 0) xOff = 30 + Math.random() * 40;
+            
+            if (yPos > screen.height - 300) yOff = -30 - Math.random() * 40;
+            if (yPos < 0) yOff = 30 + Math.random() * 40;
+
+            window.moveTo(Math.max(0, Math.min(xPos, screen.width - 400)), 
+                         Math.max(0, Math.min(yPos, screen.height - 300)));
+            setTimeout(moveWindow, 20);
+        }
+
+        moveWindow();
+
+        window.onbeforeunload = function() {
+            return "PETYA NEVER LEAVES!";
+        };
+    </script>
+</body>
+</html>
